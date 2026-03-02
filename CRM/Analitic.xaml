@@ -11,10 +11,10 @@
         <Label Content="Аналитика и отчетность" HorizontalAlignment="Left" Margin="558,21,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold" FontSize="24"/>
         <Rectangle HorizontalAlignment="Left" Height="78" Margin="50,88,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="448"/>
         <Label Content="Подразделение" HorizontalAlignment="Left" Margin="70,110,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
-        <ComboBox HorizontalAlignment="Left" Margin="204,115,0,0" VerticalAlignment="Top" Width="271" Height="24"/>
+        <ComboBox x:Name="OrganizationBox" HorizontalAlignment="Left" Margin="204,115,0,0" VerticalAlignment="Top" Width="271" Height="24" DisplayMemberPath="name" SelectedItem="{Binding Path = Organization}" SelectedValue="{Binding Path=Organization.id}" SelectedValuePath="id"/>
         <Rectangle HorizontalAlignment="Left" Height="85" Margin="50,189,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="448"/>
         <Label Content="Услуга" HorizontalAlignment="Left" Margin="72,206,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
-        <ComboBox HorizontalAlignment="Left" Margin="204,208,0,0" VerticalAlignment="Top" Width="271" Height="24">
+        <ComboBox x:Name="ServiceBox" HorizontalAlignment="Left" Margin="204,208,0,0" VerticalAlignment="Top" Width="271" Height="24" DisplayMemberPath="name" SelectedItem="{Binding Path = Service}" SelectedValue="{Binding Path=Service.id}" SelectedValuePath="id">
         </ComboBox>
         <CheckBox Content="Все" HorizontalAlignment="Left" Margin="75,237,0,0" VerticalAlignment="Top" Width="40" Height="16" Foreground="#FF1A365D" FontWeight="Bold"/>
         <Rectangle HorizontalAlignment="Left" Height="138" Margin="50,502,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="448"/>
@@ -26,11 +26,11 @@
         <CheckBox Content="Все" HorizontalAlignment="Left" Margin="75,141,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
         <Rectangle HorizontalAlignment="Left" Height="84" Margin="50,292,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="448"/>
         <Label Content="Статус" HorizontalAlignment="Left" Margin="72,311,0,0" VerticalAlignment="Top" Width="49" Foreground="#FF1A365D" FontWeight="Bold"/>
-        <ComboBox HorizontalAlignment="Left" Margin="204,313,0,0" VerticalAlignment="Top" Width="271" Height="24">
+        <ComboBox x:Name="StatusBox" HorizontalAlignment="Left" Margin="204,313,0,0" VerticalAlignment="Top" Width="271" Height="24" DisplayMemberPath="status" SelectedItem="{Binding Path = Status}" SelectedValue="{Binding Path=Status.id}" SelectedValuePath="id">
         </ComboBox>
         <Rectangle HorizontalAlignment="Left" Height="84" Margin="50,394,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="448"/>
         <Label Content="Ответственный" HorizontalAlignment="Left" Margin="72,423,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
-        <ComboBox HorizontalAlignment="Left" Margin="204,424,0,0" VerticalAlignment="Top" Width="271" Height="24">
+        <ComboBox x:Name="UserBox" HorizontalAlignment="Left" Margin="204,424,0,0" VerticalAlignment="Top" Width="271" Height="24" DisplayMemberPath="fio" SelectedItem="{Binding Path = User}" SelectedValue="{Binding Path=User.id}" SelectedValuePath="id">
         </ComboBox>
         <Label Content="Параметры" HorizontalAlignment="Left" Margin="224,52,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF718096" FontWeight="Bold"/>
         <Rectangle HorizontalAlignment="Left" Height="236" Margin="608,88,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="874"/>
