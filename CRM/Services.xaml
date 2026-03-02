@@ -1,0 +1,113 @@
+﻿<Page x:Class="CRM.Service"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CRM"
+      mc:Ignorable="d" 
+      Height="1000" Width="1590"
+      Title="Service">
+
+    <Grid Height="1000" Width="1590" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
+        <Label Content="Услуги" HorizontalAlignment="Left" Margin="558,21,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold" FontSize="24"/>
+        <Rectangle HorizontalAlignment="Left" Height="862" Margin="10,74,0,0" Stroke="#FFCBD5E0" VerticalAlignment="Top" Width="592"/>
+        <Label Content="Мои услуги" HorizontalAlignment="Left" Margin="256,88,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="#FF1A365D"/>
+        <ListBox x:Name="Service_resp_list" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="49,164,1027,476">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock>
+                                <Run Text="Услуга:">
+                                </Run>
+                                <Run Text="{Binding Path=name}"></Run>
+                                <Run Text="|"/>
+                                <Run Text="Статус:">
+                                </Run>
+                                <Run Text="{Binding Path=status}"></Run>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Дата создания:"></Run>
+                                <Run Text="{Binding Path=date_start}"></Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Rectangle HorizontalAlignment="Left" Height="862" Margin="1092,74,0,0" Stroke="#FFCBD5E0" VerticalAlignment="Top" Width="468"/>
+        <Label Content="Услуги орагнизаций" HorizontalAlignment="Left" Margin="1242,88,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="#FF1A365D"/>
+        <Rectangle HorizontalAlignment="Left" Height="862" Margin="675,74,0,0" Stroke="#FFCBD5E0" VerticalAlignment="Top" Width="357"/>
+        <Label Content="Свободные услуги" HorizontalAlignment="Left" Margin="770,88,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="#FF1A365D"/>
+        <Label Content="Взятые в работу" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="49,138,0,0"/>
+        <ListBox x:Name="ListBoxCust" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,594,1025,138">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock>
+                <Run Text="Услуга:">
+                </Run>
+                <Run Text="{Binding Path=name}"></Run>
+                <Run Text="|"/>
+                <Run Text="Статус:">
+                </Run>
+                <Run Text="{Binding Path=status}"></Run>
+                            </TextBlock>
+                            <TextBlock>
+                <Run Text="Дата создания:"></Run>
+                <Run Text="{Binding Path=date_start}"></Run>
+                            </TextBlock>
+                            <TextBlock>
+                <Run Text="Ответственный:"></Run>
+                <Run Text="{Binding Path=resp}"></Run>
+                            </TextBlock>
+
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label Content="Заказанные услуги" HorizontalAlignment="Left" Margin="49,568,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="ServiceFreeList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="705,164,587,138">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock>
+    <Run Text="Услуга:">
+    </Run>
+    <Run Text="{Binding Path=name}"></Run>
+                            </TextBlock>
+                            <TextBlock>
+    <Run Text="Дата создания:"></Run>
+    <Run Text="{Binding Path=date_start}"></Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Взять в работу" HorizontalAlignment="Left" Margin="773,880,0,0" VerticalAlignment="Top" Height="42" Width="161" Background="#FF1A365D" Foreground="White" BorderBrush="{x:Null}" FontSize="14"/>
+        <ListBox x:Name="ListServiceAll" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="1131,164,65,138">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock>
+<Run Text="Услуга:">
+</Run>
+<Run Text="{Binding Path=name}"></Run>
+                            </TextBlock>
+                            <TextBlock>
+<Run Text="Организация:"></Run>
+<Run Text="{Binding Path=suborg}"></Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Заказать" HorizontalAlignment="Left" Margin="1242,880,0,0" VerticalAlignment="Top" Height="42" Width="161" Background="#FF1A365D" Foreground="White" BorderBrush="{x:Null}" FontSize="14"/>
+    </Grid>
+</Page>

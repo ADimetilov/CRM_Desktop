@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UserWindow" Height="1080" Width="1920" WindowStartupLocation="CenterScreen">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
-        <ListBox x:Name="buttonsBox" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Margin="0,132,0,332" Width="284" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" BorderBrush="{x:Null}" Background="{x:Null}" SelectionChanged="buttonsBox_SelectionChanged">
+        <ListBox x:Name="buttonsBox" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Margin="0,74,0,390" Width="284" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" BorderBrush="{x:Null}" Background="{x:Null}" SelectionChanged="buttonsBox_SelectionChanged_1" PreviewMouseLeftButtonUp="buttonsBox_PreviewMouseLeftButtonUp">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch">
@@ -16,7 +16,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label Content="СВМПМО" HorizontalAlignment="Left" Margin="32,42,0,0" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="65" Width="236" FontSize="48" FontWeight="Bold" Foreground="#FF1A365D"/>
+        <Label Content="СВМПМО" HorizontalAlignment="Left" Margin="24,0,0,0" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="65" Width="239" FontSize="48" FontWeight="Bold" Foreground="#FF1A365D"/>
         <Frame x:Name="pageFrame" Content="" Margin="305,74,27,39" Height="1000" Width="1590" NavigationUIVisibility="Hidden" BorderBrush="#FFCBD5E0"/>
         <Border BorderBrush="#FFCBD5E0" BorderThickness="1" Margin="305,74,27,39"/>
 

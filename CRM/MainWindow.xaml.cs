@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,10 +25,23 @@ namespace CRM
         public MainWindow()
         {
             InitializeComponent();
-            UserWindow userWindow = new UserWindow();
-            this.Visibility = Visibility.Hidden;
-            userWindow.ShowDialog();
-            this.Visibility = Visibility.Visible;
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UserAuth userAuth = new UserAuth();
+            userAuth.login = uLogin.Text;
+            userAuth.password = uPassword.Password;
+            if (await API.auth_user(userAuth) == true)
+            {
+                await API.get_info_for_user(userAuth.login);
+                UserWindow userWindow = new UserWindow();
+                this.Visibility = Visibility.Hidden;
+                userWindow.ShowDialog();
+                this.Visibility = Visibility.Visible;
+            }
+            else MessageBox.Show("Введен неверный логин или пароль");
+            
         }
     }
 }

@@ -23,16 +23,33 @@ namespace CRM
         public UserWindow()
         {
             InitializeComponent();
-            InitAdministrator();
+            initButton();
+            buttonsBox.SelectedIndex = 0;
         }
 
         public void initButton()
         {
-            String role = "Администратор";
+            string role = User_Info.role;
             if (role == "Администратор")
             {
+                InitAdministrator();
+            }
+            else {
+                if (role == "Аналитик")
+                {
+                    InitAnalitik();
+                }
+                if (role == "Владелец")
+                {
+                    InitOwner();
+                }
+                if (role=="Пользователь")
+                {
+                    InitUser();
+                }
 
-            } 
+
+            }
         }
         public void InitAdministrator()
         {
@@ -97,10 +114,24 @@ namespace CRM
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            pageFrame.Content = new Service();
         }
 
-        private void buttonsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void buttonsBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void buttonsBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (buttonsBox.SelectedIndex != -1)
+            {
+                Button button = (Button)buttonsBox.SelectedItem;
+                button.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+        }
+
+        private void buttonsBox_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (buttonsBox.SelectedIndex != -1)
             {

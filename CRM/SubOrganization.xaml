@@ -9,18 +9,24 @@
 
     <Grid Background="White"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="1000" Width="1590">
         <Label Content="Подразделение" HorizontalAlignment="Left" Margin="558,21,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold" FontSize="24"/>
-        <Label Content="Наименование:" HorizontalAlignment="Left" Margin="47,69,0,0" VerticalAlignment="Top" Height="28" Width="101" Foreground="#FF1A365D" FontWeight="Bold"/>
+        <Label Content="Наименование:" HorizontalAlignment="Left" Margin="47,87,0,0" VerticalAlignment="Top" Height="28" Width="101" Foreground="#FF1A365D" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Margin="153,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Run Text="{Binding Path=name}"></Run>
         </TextBlock>
-        <Rectangle HorizontalAlignment="Left" Height="38" Margin="47,64,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="278"/>
-        <Rectangle HorizontalAlignment="Left" Height="311" Margin="47,123,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="278"/>
-        <Label Content="Описание:" Margin="51,128,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="28" Foreground="#FF1A365D" FontWeight="Bold" Width="274" BorderBrush="Black"/>
-        <Rectangle HorizontalAlignment="Left" Height="365" Margin="1155,69,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="349"/>
-        <Label Content="Персонал" HorizontalAlignment="Left" Margin="1296,74,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="38" Margin="47,82,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="278"/>
+        <Rectangle HorizontalAlignment="Left" Height="311" Margin="47,161,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="278"/>
+        <Label Content="Описание:" Margin="47,161,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="28" Foreground="#FF1A365D" FontWeight="Bold" Width="274" BorderBrush="Black"/>
+        <Rectangle HorizontalAlignment="Left" Height="164" Margin="1172,82,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="332"/>
+        <Label Content="Персонал" HorizontalAlignment="Left" Margin="1304,87,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
         <Label Content="Всего:" HorizontalAlignment="Left" Margin="1172,110,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
         <Label Content="Активные:" HorizontalAlignment="Left" Margin="1172,148,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
         <Label Content="Не активные:" HorizontalAlignment="Left" Margin="1172,191,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
-
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="1172,278,86,71"/>
+        <Rectangle HorizontalAlignment="Left" Height="850" Margin="390,79,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="736"/>
+        <Label Content="Услуги" HorizontalAlignment="Left" Margin="734,84,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="418,123,726,134"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="920,123,0,0" VerticalAlignment="Top" Height="40" Width="150"  Background="#FF1A365D" Foreground="White" FontWeight="Bold"/>
+        <Button Content="Изменить" HorizontalAlignment="Left" Margin="920,191,0,0" VerticalAlignment="Top" Height="40" Width="150"  Background="#FF1A365D" Foreground="White" FontWeight="Bold"  />
+        <Button Content="Удалить" HorizontalAlignment="Left" Margin="920,253,0,0" VerticalAlignment="Top" Height="40" Width="150"  Background="#FF1A365D" Foreground="White" FontWeight="Bold"  />
     </Grid>
 </Page>
