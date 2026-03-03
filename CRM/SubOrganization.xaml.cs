@@ -20,9 +20,21 @@ namespace CRM
     /// </summary>
     public partial class SubOrganization : Page
     {
+        private Organization_current organization_;
         public SubOrganization()
         {
             InitializeComponent();
+            init_service();
+            
+        }
+        public async void init_service()
+        {
+            organization_= await API.get_info_suborganization();
+            await API.get_info_service_sub(ServiceListOrgan);
+            await API.get_info_users_sub(UserDataGrid);
+            RunOrgan.Text = organization_.name;
+            InfoBlock.Text = organization_.info;
+            ValueAllUserBlock.Text = organization_.value.ToString();
         }
     }
 }

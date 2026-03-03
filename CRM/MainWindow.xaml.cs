@@ -43,5 +43,11 @@ namespace CRM
             else MessageBox.Show("Введен неверный логин или пароль");
             
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Setting settings = new Setting();
+            settings.ShowDialog();
+        }
     }
 }

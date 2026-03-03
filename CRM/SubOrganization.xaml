@@ -10,8 +10,8 @@
     <Grid Background="White"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="1000" Width="1590">
         <Label Content="Подразделение" HorizontalAlignment="Left" Margin="558,21,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold" FontSize="24"/>
         <Label Content="Наименование:" HorizontalAlignment="Left" Margin="47,87,0,0" VerticalAlignment="Top" Height="28" Width="101" Foreground="#FF1A365D" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Margin="153,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Run Text="{Binding Path=name}"></Run>
+        <TextBlock x:Name="NameOrgan" Foreground="#FF1A365D" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" Margin="153,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run x:Name="RunOrgan"></Run>
         </TextBlock>
         <Rectangle HorizontalAlignment="Left" Height="38" Margin="47,82,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="278"/>
         <Rectangle HorizontalAlignment="Left" Height="311" Margin="47,161,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="278"/>
@@ -21,12 +21,35 @@
         <Label Content="Всего:" HorizontalAlignment="Left" Margin="1172,110,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
         <Label Content="Активные:" HorizontalAlignment="Left" Margin="1172,148,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
         <Label Content="Не активные:" HorizontalAlignment="Left" Margin="1172,191,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="1172,278,86,71"/>
-        <Rectangle HorizontalAlignment="Left" Height="850" Margin="390,79,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="736"/>
+        <DataGrid x:Name="UserDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="1172,0,86,116" Height="606" VerticalAlignment="Bottom"/>
+        <Rectangle HorizontalAlignment="Left" Height="805" Margin="390,79,0,0" Stroke="#FFE2E8F0" VerticalAlignment="Top" Width="736"/>
         <Label Content="Услуги" HorizontalAlignment="Left" Margin="734,84,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="418,123,726,134"/>
+        <ListBox x:Name="ServiceListOrgan" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="418,123,726,134">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock>
+                                <Run Text="Наименование:"></Run>
+                                <Run Text="{Binding Path=name}"></Run>
+                            </TextBlock>
+                            <TextBlock>
+                            <Run Text="Формат:"/>
+                                <Run Text="{Binding Path=format}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Срок:"/>
+                                <Run Text="{Binding Path=term}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button Content="Добавить" HorizontalAlignment="Left" Margin="920,123,0,0" VerticalAlignment="Top" Height="40" Width="150"  Background="#FF1A365D" Foreground="White" FontWeight="Bold"/>
         <Button Content="Изменить" HorizontalAlignment="Left" Margin="920,191,0,0" VerticalAlignment="Top" Height="40" Width="150"  Background="#FF1A365D" Foreground="White" FontWeight="Bold"  />
         <Button Content="Удалить" HorizontalAlignment="Left" Margin="920,253,0,0" VerticalAlignment="Top" Height="40" Width="150"  Background="#FF1A365D" Foreground="White" FontWeight="Bold"  />
+        <TextBlock x:Name="InfoBlock" HorizontalAlignment="Left" Margin="52,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="ValueAllUserBlock" HorizontalAlignment="Left" Margin="1222,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
     </Grid>
 </Page>

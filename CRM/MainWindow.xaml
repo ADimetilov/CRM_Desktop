@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Авторизация" Height="450" Width="800">
     <Grid>
         <Rectangle Stroke="#FFE2E8F0" Margin="141,75,141,47"/>
 
@@ -16,6 +16,19 @@
         <PasswordBox x:Name="uPassword" HorizontalAlignment="Left" Margin="331,213,0,0" VerticalAlignment="Top" Width="255" Height="37" FontSize="20"/>
         <Label Content="Пароль" HorizontalAlignment="Left" Margin="221,213,0,0" VerticalAlignment="Top" Foreground="#FF1A365D" FontWeight="Bold"/>
         <Button Content="Войти" HorizontalAlignment="Center" Margin="0,297,0,0" VerticalAlignment="Top" Height="40" Width="150"  Background="#FF1A365D" Foreground="White" FontWeight="Bold" Click="Button_Click" />
+        <Button Content="" HorizontalAlignment="Left" Template="{StaticResource NoMouseOverButtonTemplate}" Margin="750,15,0,0" VerticalAlignment="Top" Height="35" Width="36" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.18"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="/hyperlink-svg-icon.png" Stretch="Fill"/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

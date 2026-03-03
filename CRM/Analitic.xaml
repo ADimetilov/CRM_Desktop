@@ -59,6 +59,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button Content="Очистить" HorizontalAlignment="Left" Margin="50,658,0,0" VerticalAlignment="Top" Height="24" Width="145" Foreground="White" Background="#FF2B6CB0" FontSize="14" FontWeight="Bold" Click="Button_Click_1"/>
 
     </Grid>
 </Page>

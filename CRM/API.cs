@@ -9,17 +9,40 @@ using System.Windows;
 using System.Runtime.Serialization.Json;
 using System.Windows.Controls;
 using System.Net.Http.Json;
+using System.Security.AccessControl;
 namespace CRM
 {
     public static class API
     {
+
+        public static async Task<bool> check_heart(string server)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    string reply = await client.GetStringAsync($"http://{server}/status");
+                    if (reply == "true")
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не получилось соединиться с сервером");
+                return false;
+            }
+        }
+
         public static async Task get_all_organization(ComboBox OrganizationBox)
         {
             try
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/organization/all");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/organization/all");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -40,7 +63,7 @@ namespace CRM
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/service/all");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/service/all");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -61,7 +84,7 @@ namespace CRM
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/service/all/list");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/service/all/list");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -82,7 +105,7 @@ namespace CRM
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/status/all");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/status/all");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -103,7 +126,7 @@ namespace CRM
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/user/all");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/user/all");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -124,7 +147,7 @@ namespace CRM
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/service/all/user_resp?id={User_Info.id}");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/service/all/user_resp?id={User_Info.id}");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -146,7 +169,7 @@ namespace CRM
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/service/all/user_cust?id={User_Info.id}");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/service/all/user_cust?id={User_Info.id}");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -168,7 +191,7 @@ namespace CRM
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/service/all/free?id={User_Info.id}");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/service/all/free?id={User_Info.id}");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -191,7 +214,7 @@ namespace CRM
                 JsonContent content = JsonContent.Create(userAuth);
                 using (var client = new HttpClient())
                 {
-                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:4433/user/auth", content);
+                    HttpResponseMessage response = await client.PostAsync($"http://{Properties.Settings.Default.server}/user/auth", content);
                      if (response.IsSuccessStatusCode)
                      {
                             string responseBody = await response.Content.ReadAsStringAsync();
@@ -215,7 +238,7 @@ namespace CRM
             {
                 using (var client = new HttpClient())
                 {
-                    string reply = await client.GetStringAsync($"http://127.0.0.1:4433/user/info?login={login}");
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/user/info?login={login}");
                     byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
                     MemoryStream stream = new MemoryStream(JsonBytes);
                     {
@@ -234,6 +257,74 @@ namespace CRM
             }
         }
 
+        public static async Task<Organization_current> get_info_suborganization()
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/organization?id={User_Info.id_suborg}");
+                    byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
+                    MemoryStream stream = new MemoryStream(JsonBytes);
+                    {
+                        DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Organization_current));
+                        Organization_current organization_ = (Organization_current)jsonSerializer.ReadObject(stream);
+                        return organization_;
+                    }
+                }
+            }
+            catch (Exception Error)
+            {
+                MessageBox.Show("Произошла ошибка:" + Error.ToString());
+                return null;
+            }
+        }
+
+        public static async Task get_info_service_sub(ListBox ServiceListOrgan)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/organization/service?id={User_Info.id_suborg}");
+                    byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
+                    MemoryStream stream = new MemoryStream(JsonBytes);
+                    {
+                        DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(List<Organization_service>));
+                        List<Organization_service> services = (List<Organization_service>)jsonSerializer.ReadObject(stream);
+                        ServiceListOrgan.ItemsSource = services;
+                    }
+                }
+            }
+            catch (Exception Error)
+            {
+                MessageBox.Show("Произошла ошибка:" + Error.ToString());
+            }
+        }
+
+        public static async Task get_info_users_sub(DataGrid UserListOrgan)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    string reply = await client.GetStringAsync($"http://{Properties.Settings.Default.server}/organization/users?id={User_Info.id_suborg}");
+                    byte[] JsonBytes = Encoding.UTF8.GetBytes(reply);
+                    MemoryStream stream = new MemoryStream(JsonBytes);
+                    {
+                        DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(List<Organization_users>));
+                        List<Organization_users> users = (List<Organization_users>)jsonSerializer.ReadObject(stream);
+                        UserListOrgan.ItemsSource = users;
+                    }
+                }
+            }
+            catch (Exception Error)
+            {
+                MessageBox.Show("Произошла ошибка:" + Error.ToString());
+            }
+        }
+
+
         public static async Task<int> get_analitics_count(Analitic_config analitic_config)
         {
             try
@@ -241,7 +332,7 @@ namespace CRM
                 JsonContent content = JsonContent.Create(analitic_config);
                 using (var client = new HttpClient())
                 {
-                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:4433/analitic/get/count", content);
+                    HttpResponseMessage response = await client.PostAsync($"http://{Properties.Settings.Default.server}/analitic/get/count", content);
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
@@ -264,7 +355,7 @@ namespace CRM
                 JsonContent content = JsonContent.Create(analitic_config);
                 using (var client = new HttpClient())
                 {
-                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:4433/analitic/get/list", content);
+                    HttpResponseMessage response = await client.PostAsync($"http://{Properties.Settings.Default.server}/analitic/get/list", content);
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();

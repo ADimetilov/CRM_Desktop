@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,12 +40,17 @@ namespace CRM
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             Analitic_config analitic_config = new Analitic_config();
-            if (OrganizationBox.SelectedIndex!=-1)
+            if (AllOrganizationCheck.IsChecked == true)
             {
-                if (AllOrganizationCheck.IsChecked == true)
+                analitic_config.field.Add("suborg", (object)-1);
+                analitic_config.keys.Add("suborg");
+            }
+            else
+            {
+                if (OrganizationBox.SelectedIndex == -1)
                 {
-                    analitic_config.field.Add("suborg", -1);
-                    analitic_config.keys.Add("suborg");
+                    MessageBox.Show("Необходимо проставить галочку \"Все\" в разделе организация или выбрать подразделение;");
+                    return;
                 }
                 else
                 {
@@ -52,42 +58,29 @@ namespace CRM
                     analitic_config.keys.Add("suborg");
                 }
             }
-            else
+            if (AllServiceCheck.IsChecked == false)
             {
-                if (AllOrganizationCheck.IsChecked != true)
+                if (ServiceBox.SelectedIndex != -1)
                 {
-                    MessageBox.Show("Необходимо проставить галочку \"Все\" в разделе организация");
-                    return;
+                    analitic_config.field.Add("id_service", ServiceBox.SelectedValue);
+                    analitic_config.keys.Add("id_service");
                 }
                 else
                 {
-                    analitic_config.field.Add("suborg", -1);
-                    analitic_config.keys.Add("suborg");
-                }
-            }
-            if (ServiceBox.SelectedIndex != -1)
-            {
-                analitic_config.field.Add("id_service", ServiceBox.SelectedValue);
-                analitic_config.keys.Add("id_service");
-            }
-            else
-            {
-                if (AllServiceCheck.IsChecked != true)
-                {
-                    MessageBox.Show("Необходимо проставить галочку \"Все\" в разделе услуги");
+                    MessageBox.Show("Необходимо проставить галочку \"Все\" в разделе услуги или выбрать услугу");
                     return;
                 }
             }
-            if (StatusBox.SelectedIndex != -1)
+            if (AllStatusCheck.IsChecked == false)
             {
-                analitic_config.field.Add("id_status", StatusBox.SelectedValue);
-                analitic_config.keys.Add("id_status");
-            }
-            else
-            {
-                if (AllStatusCheck.IsChecked != true)
+                if (StatusBox.SelectedIndex != -1)
                 {
-                    MessageBox.Show("Необходимо проставить галочку \"Все\" в разделе услуги");
+                    analitic_config.field.Add("id_status", StatusBox.SelectedValue);
+                    analitic_config.keys.Add("id_status");
+                }
+                else
+                {
+                    MessageBox.Show("Необходимо проставить галочку \"Все\" в разделе статус или выбрать его");
                     return;
                 }
             }
@@ -112,6 +105,21 @@ namespace CRM
             ListField.Items.Add(field);
             await API.get_analitics_list(analitic_config, DataAnaliticGrid);
             await API.get_analitics_count(analitic_config);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AllOrganizationCheck.IsChecked = false;
+            AllStatusCheck.IsChecked = false;
+            AllStatusCheck.IsChecked = false;
+            AllServiceCheck.IsChecked = false;
+            OrganizationBox.SelectedIndex = -1;
+            StatusBox.SelectedIndex = -1;
+            ServiceBox.SelectedIndex = -1;
+            UserBox.SelectedIndex = -1;
+            date_start.SelectedDate = null;
+            date_end.SelectedDate = null;
+
         }
     }
 }

@@ -33,6 +33,46 @@ namespace CRM
         public static string role { get; set; }
         public static int id_suborg { get; set; }
     }
+    [DataContract]
+    public class Organization_current
+    {
+        [DataMember(Name = "id")]
+        public int id { get; set; }
+        [DataMember(Name = "name")]
+        public string name { get; set; }
+        [DataMember(Name = "info")]
+        public string info { get; set; }
+        [DataMember(Name = "value")]
+        public int value { get; set; }
+    }
+    [DataContract]
+    public class Organization_service
+    {
+        [DataMember(Name = "id")]
+        public int id { get; set; }
+        [DataMember(Name = "name")]
+        public string name { get; set; }
+        [DataMember(Name = "format")]
+        public string format { get; set; }
+        [DataMember(Name = "term")]
+        public string term { get; set; }
+    }
+    [DataContract]
+    public class Organization_users
+    {
+        [DataMember(Name = "id")]
+        public int id { get; set; }
+        [DataMember(Name = "fio")]
+        public string name { get; set; }
+        [DataMember(Name = "role")]
+        public string role { get; set; }
+        [DataMember(Name = "date_registr")]
+        public string date_registr { get; set; }
+        [DataMember(Name = "mail")]
+        public string mail { get; set; }
+        [DataMember(Name = "phone")]
+        public string phone { get; set; }
+    }
 
     [DataContract]
     public class Organization
